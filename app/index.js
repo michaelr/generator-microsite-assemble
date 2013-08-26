@@ -28,6 +28,7 @@ MicrositeAssembleGenerator.prototype.askFor = function askFor() {
   var prompts = [{
     name: 'siteName',
     message: 'What is the name of the microsite?',
+    default: 'New Microsite'
   }];
 
   this.prompt(prompts, function (props) {
