@@ -1,0 +1,7 @@
+{
+    "target": "index.html",
+    "title": "Title",
+    "body-class": "index",
+    "active-menu": "index",
+    "suppress-title": true
+}

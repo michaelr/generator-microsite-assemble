@@ -1,0 +1,2 @@
+requires 'App::Microsite::Assemble', 0.01;
+requires 'CSS::Coverage', 0.04;
