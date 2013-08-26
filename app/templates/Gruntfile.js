@@ -216,9 +216,11 @@ module.exports = function(grunt) {
         this.files.forEach(function(f) {
             f.src.map(function(filepath) {
                 var data = grunt.file.read(filepath),
-                    scriptTags = '<script src="angular.min.js"></script><script src="iicms.js"></script>',
+                    scriptTags = '<script src="cms-static/angular.min.js"></script><script src="cms-static/iicms.js"></script>',
+                    cssTags = '<link rel="stylesheet" href="cms-static/cms.css" type="text/css" />',
                     ngAttrs = 'ng-app="iicms" ng-controller="iicmsCntrl" ';
 
+                data = data.replace(/<\/head>/, cssTags + '</head>');
                 data = data.replace(/<body /, '<body ' + ngAttrs);
                 data = data.replace(/<\/body>/, scriptTags + '</body>');
 

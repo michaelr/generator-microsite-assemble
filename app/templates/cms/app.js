@@ -4,9 +4,9 @@ var express = require('express'),
 var app = express();
 app.use(express.bodyParser());
 app.use(express.basicAuth('cms', 'eyeeye'));
+app.use(app.router);
 
-app.get(/^(.+)$/, function(req, res) {
-    var filename = 'build/' + req.params[0];
+function serveFile(filename, res) {
     fs.exists(filename, function (exists) {
         if(exists) {
             res.sendfile(filename);
@@ -15,7 +15,20 @@ app.get(/^(.+)$/, function(req, res) {
             res.send(404);
         }
     });
+}
+
+app.get(/^\/cms-static\/(.+)$/, function(req, res) {
+    var filename = 'cms/static/' + req.params[0];
+    serveFile(filename, res);
 });
+
+
+app.get(/^(.+)$/, function(req, res) {
+    var filename = 'build/' + req.params[0];
+    serveFile(filename, res);
+});
+
+
 app.post('/cms', function(req, res) {
     var fragment = req.body.fragment,
         content  = req.body.content;

@@ -41,11 +41,10 @@ MicrositeAssembleGenerator.prototype.app = function app() {
   this.template('_bower.json', 'bower.json');
 
   this.copy('Gruntfile.js', 'Gruntfile.js');
-  this.copy('cms/app.js', 'cms/app.js');
   this.copy('cpanfile', 'cpanfile');
 
   this.directory('bin', 'bin');
-
+  this.directory('cms', 'cms');
 
   this.directory('src/js', 'src/js');
   this.directory('src/less', 'src/less');
