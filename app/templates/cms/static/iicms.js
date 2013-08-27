@@ -76,9 +76,13 @@ app.directive('iicmsfragment', ['$compile',
 
         scope.$watch('content', function (newVal, oldVal) {
           if (newVal !== oldVal) {
+            var sanitizedFragment =
+              angular.element.parseHTML(newVal).map(function (el) {
+                return el.outerHTML || el.textContent;
+              }).join('');
             scope.saveFragment({
               fragment: attrs.path,
-              content: newVal
+              content: sanitizedFragment
             });
           }
         });
