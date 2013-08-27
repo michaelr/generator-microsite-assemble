@@ -132,7 +132,7 @@ module.exports = function(grunt) {
         express: {
             default_option: {},
             options: {
-                port: 9000,
+                port: grunt.option('port') || 9000,
                 hostname: '*',
                 server: path.resolve('./cms/app.js'),
             }
