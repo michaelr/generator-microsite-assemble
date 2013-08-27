@@ -42,7 +42,7 @@ app.post('/cms', function(req, res) {
 
     var filename = 'fragments/' + fragment;
 
-    fs.writeFile(filename, content, function (err) {
+    fs.writeFile(filename, content + "\n", function (err) {
         if(err) {
             var msg = 'Error writing to ' + filename + ": " + err;
             console.log(msg);
