@@ -35,7 +35,7 @@ app.directive("iicmsfragment", ['$compile', function ($compile) {
             var editor = $compile(angular.element(" \
               <div class='cms-editor'> \
                 <h4>Fragment Editor</h4> \
-                <h6>{{fragmentPath}}</h6> \
+                <h5>{{fragmentPath}}</h5> \
                 <textarea type=text ng-model='content'></textarea> \
               </div> \
               "))(scope);
