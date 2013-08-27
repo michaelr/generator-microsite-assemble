@@ -4,6 +4,11 @@ module.exports = function(grunt) {
         path = require('path'),
         notFast = ['htmllint', 'csscover', 'csslint'];
 
+    if(grunt.cli.tasks.filter(function (t) { return t === 'cms'; }).length ) {
+      // set the fast option if we're running the cms task
+      grunt.option('fast', true);
+    }
+
     grunt.registerFastTask = function(task, taskList) {
         taskList =
           grunt.option('fast') ?
