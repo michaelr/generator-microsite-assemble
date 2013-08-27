@@ -29,9 +29,16 @@ app.directive("iicmsfragment", ['$compile', function ($compile) {
 
             var origContent = elm.html();
             scope.content = origContent;
+            scope.fragmentPath = attrs.path;
 
             var edit = angular.element("<div class='cms-edit'><span>edit</span></div>");
-            var editor = $compile(angular.element("<div class='cms-editor'><h4>Fragment Editor</h4><textarea type=text ng-model='content'></textarea></div>"))(scope);
+            var editor = $compile(angular.element(" \
+              <div class='cms-editor'> \
+                <h4>Fragment Editor</h4> \
+                <h6>{{fragmentPath}}</h6> \
+                <textarea type=text ng-model='content'></textarea> \
+              </div> \
+              "))(scope);
 
             angular.element('body').append(editor);
 
