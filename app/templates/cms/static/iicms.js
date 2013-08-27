@@ -34,6 +34,7 @@ app.directive("iicmsfragment", ['$compile', function ($compile) {
             var edit = angular.element("<div class='cms-edit'><span>edit</span></div>");
             var editor = $compile(angular.element(" \
               <div class='cms-editor'> \
+                <a href='#' class='close'>close</a> \
                 <h4>Fragment Editor</h4> \
                 <h5>{{fragmentPath}}</h5> \
                 <textarea type=text ng-model='content'></textarea> \
@@ -47,6 +48,10 @@ app.directive("iicmsfragment", ['$compile', function ($compile) {
             editor.keyup(function(e){
                 if(e.keyCode === 27)
                     editor.hide();
+            });
+
+            editor.find('.close').bind("click", function () {
+                editor.hide();
             });
 
             edit.find('span').bind("click", function() {

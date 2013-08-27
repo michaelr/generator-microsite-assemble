@@ -23,7 +23,7 @@
     padding: 5px;
     display: none;
 }
-.cms-editor h4 ,
+.cms-editor h4,
 .cms-editor h5 {
     margin: 0 0 5px 0;
     color: black;
@@ -34,3 +34,13 @@
     height: 200px;
 }
 
+.cms-editor .close {
+    position: absolute;
+    background: url(close.png) 0 0 no-repeat;
+    width: 24px;
+    height: 27px;
+    display: block;
+    text-indent: -9999px;
+    top: 2px;
+    right: 2px;
+}
