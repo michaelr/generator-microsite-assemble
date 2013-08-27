@@ -62,7 +62,8 @@ app.directive('iicmsfragment', ['$compile',
           }
         });
 
-        editor.find('.close').bind('click', function () {
+        editor.find('.close').bind('click', function (e) {
+          e.preventDefault();
           editor.hide();
         });
 
