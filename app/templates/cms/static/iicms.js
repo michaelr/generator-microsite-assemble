@@ -71,7 +71,8 @@ app.directive('iicmsfragment', ['$compile',
           editor.hide();
         });
 
-        edit.find('span').bind('click', function () {
+        edit.find('span').bind('click', function (e) {
+          e.preventDefault();
           scope.showEditor(editor);
         });
 
