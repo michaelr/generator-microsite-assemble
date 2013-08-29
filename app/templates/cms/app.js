@@ -22,6 +22,9 @@ app.get(/^\/cms-static\/(.+)$/, function(req, res) {
     serveFile(filename, res);
 });
 
+app.get(/^\/fe?/, function(req, res) {
+    serveFile('cms/static/fe.html', res);
+});
 
 app.get(/^(.+)$/, function(req, res) {
     var filename = 'build/' + req.params[0];
