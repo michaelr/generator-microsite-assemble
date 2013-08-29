@@ -3,6 +3,7 @@
 var app = angular.module('iicms', []);
 
 app.controller('feCntrl', function ($scope, $http) {
+  $scope.changes = [];
 });
 
 app.controller('iicmsCntrl', function ($scope, $http) {

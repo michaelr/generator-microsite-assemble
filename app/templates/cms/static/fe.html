@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-        <title>Fe</title>
-    </head>
-    <body ng-app="iicms" ng-controller="feCntrl">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Fe</title>
+  </head>
+  <body ng-app="iicms" ng-controller="feCntrl">
 
-      <h1>Fe</h1>
+    <h1>Fe</h1>
 
-      <script src="cms-static/angular.min.js"></script>
-      <script src="cms-static/iicms.js"></script>
-    </body>
+    <div ng-repeat="change in changes" class="ng-cloak">
+      {{change}}
+    </div>
+
+    <script src="cms-static/angular.min.js"></script>
+    <script src="cms-static/iicms.js"></script>
+  </body>
 </html>
