@@ -4,18 +4,13 @@ use warnings;
 use App::Microsite::Assemble;
 use Path::Class;
 use Getopt::Long;
+use Text::Xslate 'mark_raw';
 
-my $with_cms;
-GetOptions ( with_cms => \$with_cms );
+my ($with_cms, $autogen_fragments);
+GetOptions ( with_cms => \$with_cms, autogen_fragments => \$autogen_fragments );
 
 my %args = (
     helpers => {
-        activeMenu => sub {
-            my ($context, $menu) = @_;
-            if( $context->{'active-menu'} && $context->{'active-menu'} eq $menu ) {
-                return 'class=active';
-            }
-        },
     },
 );
 
@@ -29,10 +24,26 @@ if ($with_cms) {
 
     $args{missing_fragment} = sub {
         my ($name, $paths) = @_;
+
+        dir($paths->[0])->mkpath;
+
         my $relative_fragment = $paths->[0];
         $relative_fragment =~ s/^fragments\///;
-        dir($relative_fragment)->mkpath;
-        return "<iicmsfragment path='$relative_fragment/$name'>$name</iicmsfragment>";
+        return mark_raw("<iicmsfragment path='$relative_fragment/$name'>$name</iicmsfragment>");
+    };
+}
+elsif ($autogen_fragments) {
+    $args{missing_fragment} = sub {
+        my ($name, $paths) = @_;
+        my $dir = dir($paths->[0]);
+        my $file = $dir->file($name);
+
+        warn "Auto-generating dummy fragment $file\n";
+
+        $dir->mkpath;
+        $file->spew($name);
+
+        return $name;
     };
 }
 

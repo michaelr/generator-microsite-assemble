@@ -13,6 +13,7 @@
     "grunt-contrib-copy" : "0.4.1",
     "grunt-contrib-watch": "0.5.1",
     "grunt-contrib-connect": "0.3.0",
+    "grunt-inline-imgsize": "~0.0.1",
     "shelljs": "0.1.4",
     "grunt-cache-bust": "0.0.3",
     "grunt-express": "~1.0.0",

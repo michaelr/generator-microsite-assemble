@@ -146,6 +146,15 @@ module.exports = function(grunt) {
             cms: {
                 files: [{ src: ['build/**/*.html'] }]
             }
+        },
+        inlineImgSize: {
+            main: {
+               files: [{
+                    expand: true,
+                    cwd: 'build/',
+                    src: ['*.html']
+                }]
+            }
         }
 
     });
@@ -190,7 +199,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask("assemble_templates", "build HTML templates", function () {
         var withCMS = grunt.config.get("cms") ? " --with_cms" : "",
-            code = shell.exec("carton exec bin/assemble-templates" + withCMS).code;
+            autogen = grunt.option("autogen_fragments") ? " --autogen_fragments" : "",
+            code = shell.exec("carton exec bin/assemble-templates" + withCMS + autogen).code;
 
         if (code) {
             return false;
@@ -246,13 +256,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-cache-bust');
+    grunt.loadNpmTasks('grunt-inline-imgsize');
     grunt.loadNpmTasks('grunt-express');
 
     grunt.registerFastTask('css', ['less', 'csslint', 'cssmin']);
     grunt.registerFastTask('html', ['assemble_templates', 'htmllint']);
     grunt.registerFastTask('static', ['copy:static']);
 
-    grunt.registerFastTask('default', ['clean:build', 'verifybower', 'css', 'html', 'static', 'clean:preflight']);
+    grunt.registerFastTask('default', ['clean:build', 'verifybower', 'css', 'html', 'static', 'inlineImgSize', 'clean:preflight']);
 
     grunt.registerFastTask('archive', ['default', 'cacheBust', 'compress']);
     grunt.registerFastTask('dev', ['default','connect','open','watch:dev']);
